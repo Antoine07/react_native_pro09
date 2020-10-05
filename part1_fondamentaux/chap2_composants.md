@@ -419,9 +419,30 @@ Utilisez pour l'instant snack.expo pour faire l'exercice [sandbox](https://snack
 
 Créez un champ centré permettant de saisir une chaine de caractères. Affichez le nombre de caractères saisis en dessus du champ, à chaque fois qu'il y a un espace compter le nombre de caractères par mot et affichez le :
 
+```text
 [ Hello World !]
 
 5 5 1
+```
+
+Indications : utilisez le composant TextInput dans cette première version et un useState dans votre composant principal, voyez l'exemple qui suit.
+
+```js
+<TextInput
+  onChangeText={ val => setChange(val) }
+  defaultValue={val}
+/>
+```
+
+Ajoutez maintenant un bouton qui inverse l'ordre des caractères dans la phrase saisie.
+
+```text
+[ Hello World !]
+
+5 5 1
+
+[Reverse]
+```
 
 ### Exercice votes 
 
