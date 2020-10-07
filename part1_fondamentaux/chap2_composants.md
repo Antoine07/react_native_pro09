@@ -651,8 +651,6 @@ const initialState = {
     order: false
 };
 
-// Copie l'objet initialState dans copyInitialState
-const copyInitialState = JSON.parse(JSON.stringify(initialState));
 ```
 
 ### Firebase
@@ -831,12 +829,8 @@ Si un étudiant à plus de 5 abscences vous changerez la couleur du background s
 student = { ...state.students.find(s => s.id === action.id) };
 student.attendance++;
 
-// Crée un nouveau tableau
-students = state.students.map( s => {
-    if ( s.id != action.id ) return s;
-
-    return student;
-});
+// Crée un nouvel objet students
+students = state.students.map( s => ({ ...s} ) );
 
 // puis on retourne le state avec un nouvel objet students 
 // les ...state sont nécessaires le pattern du flux est le suivant state => newState
