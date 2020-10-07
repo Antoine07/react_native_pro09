@@ -7,8 +7,6 @@ const Student = ({ navigation, student }) => {
 
     const { id, name, attendance, lessons } = student;
 
-    console.log(student);
-
     return (
         <TouchableOpacity
             onPress={() => navigation.navigate('Abscence', { id })}

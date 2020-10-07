@@ -28,6 +28,15 @@ import {
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 16,
+      },
+      ctActiveIndicator: {
+        flex: 1,
+        justifyContent: "center"
+      },
+      hActiveIndicator: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        padding: 10
       }
     });
   

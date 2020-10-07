@@ -1,33 +1,29 @@
 const initialState = {
-    students: [
-        { id: 1, name: "Alice", lessons: [1, 2], attendance: 0, notes: [11, 12, 18] },
-        { id: 2, name: "Alan", lessons: [3], attendance: 0, notes: [10, 14.5, 11] },
-        { id: 3, name: "Phil", lessons: [1, 2, 3], attendance: 0, notes: [11, 9, 9] },
-        { id: 4, name: "Naoudi", lessons: [1], attendance: 0, notes: [14.5, 19, 18] },
-        { id: 5, name: "Fenley", lessons: [3], attendance: 0, notes: [9, 7, 11] },
-    ],
-    lessons: [
-        { id: 1, title: "React" },
-        { id: 2, title: "React Native" },
-        { id: 3, title: "MongoDB" },
-    ],
-    behaviours :  [],
-    order: false
+    students: [],
+    lessons: [],
+    behaviours: [],
+    order: false,
+    lastId: null
 };
 
 // Copie l'objet initialState dans copyInitialState copie profonde
 // elle permettra d'avoir un objet copyInitialState distinct d'initialState
 const copyInitialState = JSON.parse(JSON.stringify(initialState));
 
-export default (state=initialState, action={}) => {
+export default (state = initialState, action = {}) => {
 
-    switch(action.type){
+    switch (action.type) {
 
         case 'LOAD_SCHOOL_DATA':
-            return {
+            const { students, lessons } = action;
+            // décomposition pour assignation de clé tableau de littéraux
+            const [{ id: lastId }] = students.slice(-1);
 
+            return {
                 ...state,
-                students
+                students,
+                lessons,
+                lastId
             }
 
         default:
