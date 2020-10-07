@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 
 import Styles from '../Styles';
 
-const Student = ({ navigation, student }) => {
+const Student = ({ navigation, student, average }) => {
 
     const { id, name, attendance, lessons } = student;
 
@@ -25,6 +25,9 @@ const Student = ({ navigation, student }) => {
                     </Text>
                     <Text style={{ padding: 2, marginBottom: 2 }}>
                         Nombre de cours  {lessons ? lessons.lenght : 0}
+                    </Text>
+                    <Text style={{ padding: 2, marginBottom: 2 }}>
+                        Moyenne  {average === null ? 'pas de notes' : average}
                     </Text>
                 </View>
             </View>

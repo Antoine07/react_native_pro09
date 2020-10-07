@@ -6,9 +6,12 @@ import Student from '../components/Student';
 
 import Styles from '../Styles';
 
+import { average } from '../actions/actions-types';
+
 const StudentScreen = ({ navigation }) => {
 
-    const { students } = useSelector(state => state);
+    const { students, order } = useSelector(state => state);
+    const dispatch = useDispatch();
 
     if (students.length === 0)
         return (
@@ -26,6 +29,12 @@ const StudentScreen = ({ navigation }) => {
             >
                 <Text style={Styles.buttonText}> Home </Text>
             </TouchableOpacity>
+            <TouchableOpacity
+                style={Styles.buttonContainer}
+                onPress={() => dispatch({ type: 'TOGGLE_ORDER_NOTES' })}
+            >
+                <Text style={Styles.buttonText}> {order ? 'Order notes asc' : 'Order notes desc'} </Text>
+            </TouchableOpacity>
             <FlatList
                 data={students}
                 /** renommer une variable dans une décomposition item : student */
@@ -36,6 +45,7 @@ const StudentScreen = ({ navigation }) => {
                         <Student
                             navigation={navigation}
                             student={student}
+                            average={average(notes)}
                         />
                     )
                 }}
