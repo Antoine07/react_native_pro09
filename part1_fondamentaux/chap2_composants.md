@@ -879,6 +879,84 @@ git commit -m "refactoring ok"
 behaviours : [{ id : 1, mention : 'A'}, { id : 2, mention : 'B'}]
 ```
 
+### Exercice Sandbox
+
+Dans cet exercice vous devez utilisez : combineReducer et Middleware thunk pour React Native. Vous utiliserez l'organisation des dossiers et fichiers que l'on a vu dans le cours pour structurer un projet Redux :
+
+```txt
+actions/
+  actions-types.js
+constants/
+  actions.js
+sotre/
+  createStore.js   <-- initialise le store voir l'exemple qui suit pour ce fichier ci-dessous
+reducers/
+  countA.js
+  countB.js
+  index.js
+
+// pour React Native
+components/
+  counterA.js
+  counterB.js
+
+App.js    <-- Dans React Native ce fichier sert de "bootstrap" 
+
+```
+
+- Fichier createStore.js
+
+```js
+import { applyMiddleware, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+
+import rootReducer from '../reducers';
+import { load_students_data_firebase, connect_firebase } from '../actions/actions-types';
+
+const configureStore = () => {
+    const store = createStore(reducer, applyMiddleware(thunkMiddleware));
+
+    return store;
+}
+
+export default configureStore;
+```
+
+Dans la sandbox expo importez les dépendances suivantes dans le fichier **package.json**. 
+Normalement sandbox expo télécharge les dépendances tout seul ...
+
+```json
+{
+  "dependencies": {
+    "react-native-paper": "3.6.0",
+    "react-redux": "^7.2.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  }
+}
+```
+
+### Fonctionnement des deux compteurs
+
+**counterA**, **counterB**
+
+Puis, sur la page principale créez deux boutons qui lancent respectivement les compteurs, le compteur A n'est pas vraiment un compteur il faut cliquer sur Go A pour l'incrémenter ...Par contre le compteur B est asynchrone et un compte en décalé avec un pas de +3. Le bouton Stop B stoppe l'incrémentation du compteur B.
+
+```text
+-------------------
+|Counter A & B    |
+|-----------------|
+| [ Go A ]        |
+|   17            |
+|-----------------|
+| [ Go B ]        |
+|   3             |
+-------------------
+|   Stop B        |
+-------------------
+```
+
+
 ### Exercice Algorithmique & Calculatrice
 
 Installez react native navigation et organisez l'application comme suit :
