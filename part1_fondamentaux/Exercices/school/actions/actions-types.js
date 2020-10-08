@@ -30,7 +30,7 @@ export const get_student = payload => {
 
 export const load_school_data = payload => {
 
-    return { type : 'LOAD_SCHOOL_DATA', students, lessons} ;
+    return { type : 'LOAD_SCHOOL_DATA', payload} ;
 }
 
 // code trop geek ...
