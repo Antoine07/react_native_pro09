@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator, SafeAreaView } from 'react-native';
+
 import { useDispatch, useSelector } from 'react-redux';
+
+import { decrement_attendance, get_student, increment_attendance } from '../actions/actions-types';
 
 import Styles from '../Styles';
 
@@ -11,7 +14,7 @@ const AbscenceScreen = ({ navigation, route }) => {
 
 
     useEffect(() => {
-        dispatch({ type: 'GET_STUDENT', id });
+        dispatch(get_student({ id }));
     }, [id]); // on peut parfaitement watcher une props
 
     if (student === null)
@@ -34,14 +37,14 @@ const AbscenceScreen = ({ navigation, route }) => {
             </TouchableOpacity>
             <TouchableOpacity
                 style={attendance > 0 ? Styles.buttonContainer : Styles.buttonDisable}
-                onPress={() => dispatch({ type: 'DECREMENT_ATTENDANCE', sens: -1, id })}
+                onPress={() => dispatch(decrement_attendance({ sens: - 1, id }))}
                 disabled={attendance > 0 ? false : true}
             >
                 <Text style={Styles.buttonText}> Décrémenter -1 </Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={Styles.buttonContainer}
-                onPress={() => dispatch({ type: 'INCREMENT_ATTENDANCE', sens: 1, id })}
+                onPress={() => dispatch(increment_attendance({ sens: 1, id }))}
             >
                 <Text style={Styles.buttonText}> Décrémenter +1 </Text>
             </TouchableOpacity>

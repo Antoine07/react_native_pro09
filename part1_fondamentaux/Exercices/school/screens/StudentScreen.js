@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { average, toggle_order_notes } from '../actions/actions-types';
+
 import Student from '../components/Student';
 
 import Styles from '../Styles';
-
-import { average } from '../actions/actions-types';
 
 const StudentScreen = ({ navigation }) => {
 
@@ -31,7 +31,7 @@ const StudentScreen = ({ navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
                 style={Styles.buttonContainer}
-                onPress={() => dispatch({ type: 'TOGGLE_ORDER_NOTES' })}
+                onPress={() => dispatch(toggle_order_notes())}
             >
                 <Text style={Styles.buttonText}> {order ? 'Order notes asc' : 'Order notes desc'} </Text>
             </TouchableOpacity>

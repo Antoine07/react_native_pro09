@@ -1,4 +1,11 @@
 import { average, copyStudents } from '../actions/actions-types';
+import { 
+    DECREMENT_ATTENDANCE, 
+    INCREMENT_ATTENDANCE,
+    LOAD_SCHOOL_DATA,
+    GET_STUDENT,
+    TOGGLE_ORDER_NOTES
+} from '../constants/actions';
 
 const initialState = {
     students: [],
@@ -9,16 +16,12 @@ const initialState = {
     student: null
 };
 
-// Copie l'objet initialState dans copyInitialState copie profonde
-// elle permettra d'avoir un objet copyInitialState distinct d'initialState
-const copyInitialState = JSON.parse(JSON.stringify(initialState));
-
 export default (state = initialState, action = {}) => {
 
     switch (action.type) {
 
-        case 'LOAD_SCHOOL_DATA':
-            const { students, lessons } = action;
+        case LOAD_SCHOOL_DATA:
+            const { students, lessons } = action.payload;
             // décomposition pour assignation de clé tableau de littéraux
             const [{ id: lastId }] = students.slice(-1);
 
@@ -29,9 +32,9 @@ export default (state = initialState, action = {}) => {
                 lastId
             }
 
-        case 'DECREMENT_ATTENDANCE':
-        case 'INCREMENT_ATTENDANCE':
-            const { id, sens } = action;
+        case DECREMENT_ATTENDANCE:
+        case INCREMENT_ATTENDANCE:
+            const { id, sens } = action.payload;
 
             const st = state.students
                 .map(s => ({ ...s })) // on copie 
@@ -60,8 +63,9 @@ export default (state = initialState, action = {}) => {
                 student: st.find(student => student.id === id)
             }
 
-        case 'GET_STUDENT':
-            const { id: studentId } = action;
+        case GET_STUDENT:
+            
+            const { id: studentId } = action.payload;
             const student = state.students.find(student => student.id === studentId);
 
             return {
@@ -69,9 +73,7 @@ export default (state = initialState, action = {}) => {
                 student
             }
 
-        case 'TOGGLE_ORDER_NOTES':
-
-            console.log(action )
+        case TOGGLE_ORDER_NOTES:
 
             const studentsOrder = copyStudents(state);
 
