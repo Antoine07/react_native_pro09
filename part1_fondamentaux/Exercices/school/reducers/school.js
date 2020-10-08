@@ -1,10 +1,11 @@
 import { average, copyStudents } from '../actions/actions-types';
-import { 
-    DECREMENT_ATTENDANCE, 
+import {
+    DECREMENT_ATTENDANCE,
     INCREMENT_ATTENDANCE,
     LOAD_SCHOOL_DATA,
     GET_STUDENT,
-    TOGGLE_ORDER_NOTES
+    TOGGLE_ORDER_NOTES,
+    SET_MENTION
 } from '../constants/actions';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
     behaviours: [],
     order: false,
     lastId: null,
-    student: null
+    student: null,
+    mention: 'Aucune'
 };
 
 export default (state = initialState, action = {}) => {
@@ -65,8 +67,25 @@ export default (state = initialState, action = {}) => {
                 student: st.find(student => student.id === id)
             }
 
+        case SET_MENTION:
+
+            const { mention, id: mentionId } = action.payload;
+
+            const behaviours = state.behaviours.map(b => ({ ...b }));
+
+            const studentMention = behaviours.find(b => b.id === mentionId);
+
+            if (studentMention) studentMention.mention = mention;
+            else behaviours.push({ id : mentionId, mention });   
+
+            return {
+                ...state,
+                mention,
+                behaviours
+            }
+
         case GET_STUDENT:
-            
+
             const { id: studentId } = action.payload;
             const student = state.students.find(student => student.id === studentId);
 
@@ -90,7 +109,7 @@ export default (state = initialState, action = {}) => {
             return {
                 ...state,
                 students: studentsOrder,
-                order : !state.order
+                order: !state.order
             }
 
         default:

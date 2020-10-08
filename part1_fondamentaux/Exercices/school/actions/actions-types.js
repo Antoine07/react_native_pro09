@@ -3,7 +3,9 @@ import {
     INCREMENT_ATTENDANCE,
     LOAD_SCHOOL_DATA,
     GET_STUDENT,
-    TOGGLE_ORDER_NOTES, LOADING
+    TOGGLE_ORDER_NOTES, 
+    LOADING, 
+    SET_MENTION
 } from '../constants/actions';
 
 import { students, lessons } from '../school_data';
@@ -26,6 +28,11 @@ export const increment_attendance = payload => {
 export const get_student = payload => {
 
     return { type: GET_STUDENT, payload };
+}
+
+export const set_mention = payload => {
+
+    return { type : SET_MENTION, payload} ;
 }
 
 // On consomme une API
