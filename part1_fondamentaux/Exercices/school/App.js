@@ -6,7 +6,7 @@ import { Provider, useSelector, useDispatch } from 'react-redux';
 import { createStore } from 'redux';
 
 import { load_school_data } from './actions/actions-types';
-import school from './reducers/school';
+import reducer from './reducers/index';
 
 import HomeScreen from './screens/HomeScreen';
 import StudentScreen from './screens/StudentScreen';
@@ -14,14 +14,17 @@ import AbscenceScreen from './screens/AbscenceScreen';
 
 import { students, lessons } from './school_data';
 
-const store = createStore(school);
+const store = createStore(reducer);
 
 // On utilise la classe createStackNavigator de React navigation
 const Stack = createStackNavigator();
 
 const Nav = () => {
-  const { lastId } = useSelector(state => state);
+  const { lastId } = useSelector(state => {
+    return state.school; // attention c'est la clé de votre reducer voir combineReducer dans index.js 
+  });
   const dispatch = useDispatch();
+
 
   // useEffect sera exécuté une fois au montage et dès que lastId change
   useEffect(() => {

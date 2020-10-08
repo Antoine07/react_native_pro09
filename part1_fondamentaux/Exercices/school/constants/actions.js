@@ -1,5 +1,9 @@
+// school
 export const LOAD_SCHOOL_DATA = 'LOAD_SCHOOL_DATA';
 export const DECREMENT_ATTENDANCE = 'DECREMENT_ATTENDANCE';
 export const INCREMENT_ATTENDANCE = 'INCREMENT_ATTENDANCE';
 export const GET_STUDENT = 'GET_STUDENT';
 export const TOGGLE_ORDER_NOTES = 'TOGGLE_ORDER_NOTES';
+
+// load
+export const LOADING = 'LOADING';

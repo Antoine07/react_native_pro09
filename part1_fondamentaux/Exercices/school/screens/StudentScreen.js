@@ -10,7 +10,7 @@ import Styles from '../Styles';
 
 const StudentScreen = ({ navigation }) => {
 
-    const { students, order } = useSelector(state => state);
+    const { students, order } = useSelector(state => state.school);
     const dispatch = useDispatch();
 
     if (students.length === 0)

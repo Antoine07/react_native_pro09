@@ -9,7 +9,7 @@ import Styles from '../Styles';
 
 const AbscenceScreen = ({ navigation, route }) => {
     const { id } = route.params;
-    const { student } = useSelector(state => state);
+    const { student } = useSelector(state => state.school);
     const dispatch = useDispatch();
 
 

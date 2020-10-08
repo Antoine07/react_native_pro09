@@ -1,9 +1,9 @@
-import { 
-    DECREMENT_ATTENDANCE, 
+import {
+    DECREMENT_ATTENDANCE,
     INCREMENT_ATTENDANCE,
     LOAD_SCHOOL_DATA,
     GET_STUDENT,
-    TOGGLE_ORDER_NOTES
+    TOGGLE_ORDER_NOTES, LOADING
 } from '../constants/actions';
 
 
@@ -15,36 +15,41 @@ export const toggle_order_notes = () => {
 
 export const decrement_attendance = payload => {
 
-    return { type: 'DECREMENT_ATTENDANCE', payload };
+    return { type: DECREMENT_ATTENDANCE, payload };
 }
 
 export const increment_attendance = payload => {
 
-    return { type: 'INCREMENT_ATTENDANCE', payload };
+    return { type: INCREMENT_ATTENDANCE, payload };
 }
 
 export const get_student = payload => {
 
-    return { type: 'GET_STUDENT', payload };
+    return { type: GET_STUDENT, payload };
 }
 
 export const load_school_data = payload => {
 
-    return { type : 'LOAD_SCHOOL_DATA', payload} ;
+    return { type: LOAD_SCHOOL_DATA, payload };
+}
+
+export const isloading = payload => {
+
+    return { type: LOADING, payload } ;
 }
 
 // code trop geek ...
 // const average = notes => notes.length  === 0 ? null : Math.floor( notes.reduce( (curr, acc) => curr + acc ) / notes.length ) ;
 
 // Il est préférable de faire un code plus lisible pour tous ... 
-const average = (notes, decimal = 100)  => {
+const average = (notes, decimal = 100) => {
 
     // on lève une exception si on a une valeur aberrante 
-    if(decimal <= 0) throw new Error('Bad value decimal average function ...');
+    if (decimal <= 0) throw new Error('Bad value decimal average function ...');
 
-    if( notes.length === 0  )  return null;
+    if (notes.length === 0) return null;
 
-    return Math.floor( (notes.reduce( (curr, acc) => curr + acc ) / notes.length ) * decimal) / decimal;
+    return Math.floor((notes.reduce((curr, acc) => curr + acc) / notes.length) * decimal) / decimal;
 }
 
 
