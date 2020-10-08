@@ -6,7 +6,7 @@ import {
     TOGGLE_ORDER_NOTES, LOADING
 } from '../constants/actions';
 
-
+import { students, lessons } from '../school_data';
 
 export const toggle_order_notes = () => {
 
@@ -28,14 +28,53 @@ export const get_student = payload => {
     return { type: GET_STUDENT, payload };
 }
 
+// On consomme une API
 export const load_school_data = payload => {
+
+    console.log(payload)
 
     return { type: LOAD_SCHOOL_DATA, payload };
 }
 
+const error = false;
+const getDataApiStudents = time => new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve({ students });
+    }, time);
+
+    if (error) reject('error')
+});
+
+const getDataApiLessons = time => new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve({ lessons });
+    }, time);
+
+    if (error) reject('error')
+})
+
+export const load_school_data_api = () => {
+
+    return dispatch => {
+
+        const load = async () => {
+            dispatch(isloading(true));
+            const { students } = await getDataApiStudents(500);
+            const { lessons } = await getDataApiLessons(500);
+            dispatch(load_school_data({ students, lessons }));
+            dispatch(isloading(false));
+        }
+
+        // exécuter la fonction 
+        load();
+
+    }
+
+}
+
 export const isloading = payload => {
 
-    return { type: LOADING, payload } ;
+    return { type: LOADING, payload };
 }
 
 // code trop geek ...

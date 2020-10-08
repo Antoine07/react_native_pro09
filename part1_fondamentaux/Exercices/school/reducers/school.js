@@ -22,6 +22,8 @@ export default (state = initialState, action = {}) => {
 
         case LOAD_SCHOOL_DATA:
             const { students, lessons } = action.payload;
+
+            console.log(action, students, lessons, 'reducer');
             // décomposition pour assignation de clé tableau de littéraux
             const [{ id: lastId }] = students.slice(-1);
 

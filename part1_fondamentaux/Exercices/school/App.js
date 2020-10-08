@@ -1,40 +1,55 @@
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { View, ActivityIndicator } from 'react-native';
 
 import { Provider, useSelector, useDispatch } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
-import { load_school_data } from './actions/actions-types';
+import { load_school_data_api } from './actions/actions-types';
 import reducer from './reducers/index';
+
+import thunkMiddleware from 'redux-thunk';
 
 import HomeScreen from './screens/HomeScreen';
 import StudentScreen from './screens/StudentScreen';
 import AbscenceScreen from './screens/AbscenceScreen';
 
-import { students, lessons } from './school_data';
+import Styles from './Styles';
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 
 // On utilise la classe createStackNavigator de React navigation
 const Stack = createStackNavigator();
 
 const Nav = () => {
-  const { lastId } = useSelector(state => {
-    return state.school; // attention c'est la clé de votre reducer voir combineReducer dans index.js 
-  });
+  const { lastId, isLoading } = useSelector(state => {
+    return {
+      lastId: state.school.lastId,
+      isLoading: state.load.isLoading
+    }
+  }
+  )
   const dispatch = useDispatch();
 
+  console.log(isLoading, lastId);
 
   // useEffect sera exécuté une fois au montage et dès que lastId change
   useEffect(() => {
     // On récupère dans une API les data
-    dispatch(load_school_data({ students, lessons }));
+    dispatch(load_school_data_api());
 
     // lastId si on a un CREATE student dans l'application
     // on watch l'id du dernier student inséré dans les données dans l'API
     // si il change => reload des données
   }, [lastId]);
+
+  if (isLoading === true)
+    return (
+      <View style={[Styles.ctActiveIndicator, Styles.hActiveIndicator]}>
+        <ActivityIndicator size="large" color="#00ff00" />
+      </View>
+    )
 
   return (
     <NavigationContainer>
