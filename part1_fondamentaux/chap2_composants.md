@@ -959,7 +959,7 @@ Indications pour la partie asynchrone du compteur :
 
 ```js
 
-exort const increment_counterB = (step = 3) => {
+export const increment_counterB = (step = 3) => {
 
   // todo définir une action
 }
