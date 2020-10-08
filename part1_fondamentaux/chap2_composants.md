@@ -955,6 +955,26 @@ Puis, sur la page principale créez deux boutons qui lancent respectivement les 
 -------------------
 ```
 
+Indications pour la partie asynchrone du compteur :
+
+```js
+
+exort const increment_counterB = (step = 3) => {
+
+  // todo définir une action
+}
+
+export const counterB_async = () => {
+
+    return dispatch => {
+
+        // setTimeout() <-- doit lancer l'incrémente toutes les secondes par exemple
+
+
+    }
+
+}
+```
 
 ### Exercice Algorithmique & Calculatrice
 
