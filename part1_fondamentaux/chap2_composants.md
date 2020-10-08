@@ -911,7 +911,6 @@ import { applyMiddleware, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 import rootReducer from '../reducers';
-import { load_students_data_firebase, connect_firebase } from '../actions/actions-types';
 
 const configureStore = () => {
     const store = createStore(reducer, applyMiddleware(thunkMiddleware));
