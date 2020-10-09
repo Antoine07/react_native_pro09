@@ -976,9 +976,9 @@ export const counterB_async = () => {
 }
 ```
 
-Créez votre propre middleware **logMiddleware** et le reducer **log**. Celui-ci vous permettra de notifier quel compteur a été utilisé, nombre de clique(s) sur le compteur. Pensez à bien diffirencier les compteurs utiliser dans vos logs.
+Créez votre propre middleware **logMiddleware** et le reducer **log**. Celui-ci vous permettra de notifier quel compteur a été utilisé, nombre de clique(s) sur le compteur. Pensez à bien diffirencier les compteurs utiliser dans vos logs et à ne compter qu'un seul clique.
 
-Affichez les logs à l'aide d'un bouton dans l'application.
+Affichez les logs sous les compteurs.
 
 Aidez vous du middleware suivant pour bien comprendre son fonctionnement :
 
@@ -997,6 +997,17 @@ const ExMiddleware = store => next => action => {
 
 export default ExMiddleware;
 ```
+
+## Exercice utilisez les composants du device
+
+Créez une page pour afficher la galerie de photos de votre téléphone.
+
+Installez la dépendance suivante dans notre projet.
+
+```bash
+expo install expo-image-picker
+```
+
 
 ### Exercice Algorithmique & Calculatrice
 
