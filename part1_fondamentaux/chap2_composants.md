@@ -879,7 +879,7 @@ git commit -m "refactoring ok"
 behaviours : [{ id : 1, mention : 'A'}, { id : 2, mention : 'B'}]
 ```
 
-### Exercice Sandbox
+### Exercice CounterAB (révision)
 
 Dans cet exercice vous devez utilisez : combineReducer et Middleware thunk pour React Native. Vous utiliserez l'organisation des dossiers et fichiers que l'on a vu dans le cours pour structurer un projet Redux :
 
@@ -891,8 +891,8 @@ constants/
 sotre/
   createStore.js   <-- initialise le store voir l'exemple qui suit pour ce fichier ci-dessous
 reducers/
-  countA.js
-  countB.js
+  counterA.js
+  counterB.js
   index.js
 
 // pour React Native
