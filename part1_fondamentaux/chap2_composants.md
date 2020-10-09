@@ -980,6 +980,24 @@ Créez votre propre middleware **logMiddleware** et le reducer **log**. Celui-ci
 
 Affichez les logs à l'aide d'un bouton dans l'application.
 
+Aidez vous du middleware suivant pour bien comprendre son fonctionnement :
+
+```js
+const ExMiddleware = store => next => action => {
+
+  console.log('dispatching', action); // action avant qu'elle passe dans le reducer
+  const result = next(action); // action est faite dans le reducer
+  console.log('next action', store.getState());
+
+  // Attention au boucle infini ...
+  // store.dispatch({ type : 'MESSAGE'})
+
+  return result;
+}
+
+export default ExMiddleware;
+```
+
 ### Exercice Algorithmique & Calculatrice
 
 Installez react native navigation et organisez l'application comme suit :
