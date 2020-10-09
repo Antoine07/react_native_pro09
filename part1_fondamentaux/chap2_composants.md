@@ -976,6 +976,10 @@ export const counterB_async = () => {
 }
 ```
 
+Créez votre propre middleware **logMiddleware** et le reducer **log**. Celui-ci vous permettra de notifier quel compteur a été utilisé, nombre de clique(s) sur le compteur. Pensez à bien diffirencier les compteurs utiliser dans vos logs.
+
+Affichez les logs à l'aide d'un bouton dans l'application.
+
 ### Exercice Algorithmique & Calculatrice
 
 Installez react native navigation et organisez l'application comme suit :
